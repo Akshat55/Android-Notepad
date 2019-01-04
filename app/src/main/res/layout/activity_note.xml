@@ -1,8 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Note">
+    android:background="@drawable/edit_text_background"
+    android:orientation="vertical"
+    tools:context=".NoteActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <!-- Custom toolbar -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/note_toolbar"
+        theme="@style/customToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/new_entry"
+            android:textSize="25sp" />
+
+        <ImageButton
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="15dp"
+            android:contentDescription="@string/add_note"
+            android:src="@drawable/ic_add" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/edit_text_background"
+        android:hint="@string/note_name_hint"
+        android:inputType="text"
+        android:maxLength="25"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:textColorHint="@color/greyHint"
+        android:textSize="20sp" />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:background="@drawable/edit_text_background"
+        android:gravity="start"
+        android:hint="@string/note_message_hint"
+        android:inputType="textMultiLine"
+        android:padding="5dp"
+        android:textColorHint="@color/greyHint"
+        android:textSize="20sp" />
+
+
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:layout_weight="0.5"
+        android:background="@drawable/edit_text_background"
+        android:gravity="start"
+        android:hint="@string/note_message_hint"
+        android:inputType="textMultiLine"
+        android:padding="5dp"
+        android:textColorHint="@color/greyHint" />
+
+</LinearLayout>
