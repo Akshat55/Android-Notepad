@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,10 +10,9 @@
 
     <!-- Custom toolbar -->
     <android.support.v7.widget.Toolbar
-        android:id="@+id/note_toolbar"
-        theme="@style/customToolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        app:theme="@style/customToolbar">
 
 
         <TextView
@@ -20,10 +20,10 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="@string/new_entry"
-            android:textSize="25sp" />
+            android:textColor="@color/white" />
 
         <ImageButton
-            android:id="@+id/add"
+            android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -34,6 +34,7 @@
     </android.support.v7.widget.Toolbar>
 
     <EditText
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -48,6 +49,7 @@
 
 
     <EditText
+        android:id="@+id/message"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
@@ -59,18 +61,5 @@
         android:textColorHint="@color/greyHint"
         android:textSize="20sp" />
 
-
-    <EditText
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="5dp"
-        android:layout_weight="0.5"
-        android:background="@drawable/edit_text_background"
-        android:gravity="start"
-        android:hint="@string/note_message_hint"
-        android:inputType="textMultiLine"
-        android:padding="5dp"
-        android:textColorHint="@color/greyHint" />
 
 </LinearLayout>

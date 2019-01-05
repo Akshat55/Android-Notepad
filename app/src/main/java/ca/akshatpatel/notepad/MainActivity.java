@@ -24,9 +24,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.custom_toolbar);
         setSupportActionBar(toolbar);
 
-        // Retrieve attributes from layout
+        DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+        notes = db.getAllNotes();
+
+        // Retrieve attributes from layout & set adapter for ListView
         ImageButton newEntry = findViewById(R.id.add);
         ListView myList = findViewById(R.id.notepad_listview);
+        NotepadAdapter notepadAdapter = new NotepadAdapter(this, notes);
+        myList.setAdapter(notepadAdapter);
 
 
         //Set on click listener which starts the NoteActivity activity
@@ -45,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent updateNoteActivity = new Intent(MainActivity.this, NoteActivity.class);
                 updateNoteActivity.putExtra("option", "update");
+                updateNoteActivity.putExtra("id", notes.get(position).getId());
+                updateNoteActivity.putExtra("name", notes.get(position).getName());
+                updateNoteActivity.putExtra("message", notes.get(position).getMessage());
                 startActivity(updateNoteActivity);
             }
         });

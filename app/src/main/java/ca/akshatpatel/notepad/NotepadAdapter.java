@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -24,8 +25,13 @@ public class NotepadAdapter extends ArrayAdapter<Note> {
     @NonNull
     public View getView(int position, View view, @NonNull ViewGroup parent) {
         LayoutInflater inflater = this.mContext.getLayoutInflater();
-        view = inflater.inflate(R.layout.notepad_list_view, parent, false);
 
+        if (view == null) {
+            view = inflater.inflate(R.layout.notepad_list_view, parent, false);
+        }
+
+        //Set the name
+        ((TextView) view.findViewById(R.id.name)).setText(notes.get(position).getName());
 
         return view;
     }

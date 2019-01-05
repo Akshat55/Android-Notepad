@@ -61,4 +61,11 @@ public class Note {
     public String getMessage() {
         return this.message;
     }
+
+    /**
+     * @return id
+     */
+    public long getId() {
+        return this.id;
+    }
 }
