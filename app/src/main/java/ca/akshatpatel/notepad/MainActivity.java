@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         // Retrieve attributes from layout & set adapter for ListView
         ImageButton newEntry = findViewById(R.id.add);
         ListView myList = findViewById(R.id.notepad_listview);
-        NotepadAdapter notepadAdapter = new NotepadAdapter(this, notes);
+        final NotepadAdapter notepadAdapter = new NotepadAdapter(this, notes);
         myList.setAdapter(notepadAdapter);
 
 
@@ -72,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
                                 sendEditIntent(position);
                                 break;
                             case R.id.menuDelete:
-
                                 db.deleteNote(notes.get(position).getId());
                                 notes.remove(position);
+                                notepadAdapter.notifyDataSetChanged();
                                 break;
                             default:
                                 break;
