@@ -15,16 +15,28 @@ public class NoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
-
-        //Get Intent after starting activity (add or update)
-        Intent intent = getIntent();
-        final String option = intent.getStringExtra("option");
-
+        //Initialization
+        String recievedName, recievedMessage;
 
         final DatabaseHandler dbHandler = new DatabaseHandler(getApplicationContext());
         final EditText name = findViewById(R.id.name);
         final EditText message = findViewById(R.id.message);
         ImageButton save = findViewById(R.id.save);
+
+
+        //Get Intent after starting activity (add or update)
+        final Intent intent = getIntent();
+        final String option = intent.getStringExtra("option");
+
+        if (option.equals("update")) {
+            recievedName = intent.getStringExtra("name");
+            recievedMessage = intent.getStringExtra("message");
+
+            //Set the values
+            name.setText(recievedName);
+            message.setText(recievedMessage);
+
+        }
 
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -42,9 +54,10 @@ public class NoteActivity extends AppCompatActivity {
                     Toast.makeText(NoteActivity.this, "Success", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(NoteActivity.this, MainActivity.class));
                 } else {
-                    //dbHandler.updateNote(, , );
+                    long recievedId = intent.getLongExtra("id", -1);
+                    dbHandler.updateNote(recievedId, name.getText().toString(), message.getText().toString());
                     startActivity(new Intent(NoteActivity.this, MainActivity.class));
-                    s
+
                 }
 
             }
