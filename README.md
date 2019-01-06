@@ -1,2 +1,6 @@
 # Notepad
-Notepad Application which uses GSON &amp; Sqlite database to store the notes.
+CRUD Notepad Application which ListView and DatabaseHandler(SQLite) to store and display the notes.
+
+### Build tools
+- Android Studio
+- Genymotion Android Emulator
