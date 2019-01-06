@@ -8,21 +8,45 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+
+/**
+ * @author Akshat Patel
+ * created on 9/4/2018
+ */
 public class DatabaseHandler extends SQLiteOpenHelper {
 
+
+    /**
+     * @param context Application Context
+     */
     DatabaseHandler(Context context) {
         super(context, "NotepadDB", null, 1);
     }
 
+
+    /**
+     * @param db SQLiteDatabase
+     */
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE notepad (id INTEGER PRIMARY KEY, name TEXT, message TEXT)");
     }
 
+
+    /**
+     * @param db         SQLiteDatabase
+     * @param oldVersion Older version number
+     * @param newVersion New Version number
+     */
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS notepad");
         onCreate(db);
     }
 
+
+    /**
+     * @param id id for the Note Object to be deleted
+     * @return boolean variable if the delete is successful or not
+     */
     boolean deleteNote(long id) {
 
         SQLiteDatabase db = getWritableDatabase();
@@ -36,6 +60,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * @param name    Note name
+     * @param message Note Message
+     * @return boolean variable if the create is successful or not
+     */
     boolean addNote(String name, String message) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -50,6 +79,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * @param id      Note id
+     * @param name    Note name
+     * @param message Note message
+     * @return boolean variable if the update is successful or not
+     */
     boolean updateNote(long id, String name, String message) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -62,6 +97,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * @return ArrayList\<Note>\
+     */
     ArrayList<Note> getAllNotes() {
 
         ArrayList<Note> itemArray = new ArrayList<>();

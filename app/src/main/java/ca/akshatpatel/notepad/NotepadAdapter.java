@@ -10,11 +10,18 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * @author Akshat Patel
+ * created on 9/4/2018
+ */
 public class NotepadAdapter extends ArrayAdapter<Note> {
     private Activity mContext;
     private ArrayList<Note> notes;
 
-
+    /**
+     * @param context Activity
+     * @param list    ArrayList type Note
+     */
     NotepadAdapter(Activity context, ArrayList<Note> list) {
         super(context, R.layout.notepad_list_view, list);
         this.mContext = context;

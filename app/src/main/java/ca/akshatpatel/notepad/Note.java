@@ -1,7 +1,8 @@
 package ca.akshatpatel.notepad;
 
 /**
- * Created by Akshat Patel on 9/4/2017
+ * @author Akshat Patel
+ * created on 9/4/2018
  */
 public class Note {
 

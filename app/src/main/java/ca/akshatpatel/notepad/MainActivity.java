@@ -14,6 +14,10 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+/**
+ * @author Akshat Patel
+ * created on 9/4/2018
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Note> notes;
@@ -27,10 +31,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.custom_toolbar);
         setSupportActionBar(toolbar);
 
+        //Retrieve the notes from the database & set the ListView adapter
         final DatabaseHandler db = new DatabaseHandler(getApplicationContext());
         notes = db.getAllNotes();
-
-        // Retrieve attributes from layout & set adapter for ListView
         ImageButton newEntry = findViewById(R.id.add);
         ListView myList = findViewById(R.id.notepad_listview);
         final NotepadAdapter notepadAdapter = new NotepadAdapter(this, notes);
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        //On item click (SHORT) in list view start note activity
         myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -56,8 +60,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        //Set the on item long click listener to allow deletion
         myList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                //Inflate view
                 PopupMenu popup = new PopupMenu(MainActivity.this, view);
                 popup.getMenuInflater().inflate(R.menu.note_select_menu, popup.getMenu());
                 popup.setGravity(Gravity.END);
@@ -91,6 +98,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    /**
+     * @param position position of the item clicked on.
+     *                 Starts Note Update activity.
+     */
     private void sendEditIntent(int position) {
         Intent updateNoteActivity = new Intent(MainActivity.this, NoteActivity.class);
         updateNoteActivity.putExtra("option", "update");
