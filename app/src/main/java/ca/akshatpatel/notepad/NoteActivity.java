@@ -16,8 +16,6 @@ public class NoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_note);
 
         //Initialization
-        String recievedName, recievedMessage;
-
         final DatabaseHandler dbHandler = new DatabaseHandler(getApplicationContext());
         final EditText name = findViewById(R.id.name);
         final EditText message = findViewById(R.id.message);
@@ -29,13 +27,9 @@ public class NoteActivity extends AppCompatActivity {
         final String option = intent.getStringExtra("option");
 
         if (option.equals("update")) {
-            recievedName = intent.getStringExtra("name");
-            recievedMessage = intent.getStringExtra("message");
-
             //Set the values
-            name.setText(recievedName);
-            message.setText(recievedMessage);
-
+            name.setText(intent.getStringExtra("name"));
+            message.setText(intent.getStringExtra("message"));
         }
 
 
@@ -54,8 +48,8 @@ public class NoteActivity extends AppCompatActivity {
                     Toast.makeText(NoteActivity.this, "Success", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(NoteActivity.this, MainActivity.class));
                 } else {
-                    long recievedId = intent.getLongExtra("id", -1);
-                    dbHandler.updateNote(recievedId, name.getText().toString(), message.getText().toString());
+                    long receivedId = intent.getLongExtra("id", -1);
+                    dbHandler.updateNote(receivedId, name.getText().toString(), message.getText().toString());
                     startActivity(new Intent(NoteActivity.this, MainActivity.class));
 
                 }
